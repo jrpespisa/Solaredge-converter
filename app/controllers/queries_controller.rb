@@ -6,8 +6,12 @@ class QueriesController < ApplicationController
 
   def create
     @query = Query.new(query_params)
-    binding.pry
-    redirect_to root_path
+    QueryCalculator.calculate(@query)
+    if @query.save
+      redirect_to root_path
+    else
+      render :index
+    end    
   end
 
   private

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201163927) do
+ActiveRecord::Schema.define(version: 20160201172848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160201163927) do
     t.float    "consumed",                    null: false
     t.float    "sent_to_grid",                null: false
     t.float    "savings_consumed",            null: false
-    t.integer  "credit_grid",                 null: false
+    t.float    "credit_grid",                 null: false
     t.float    "savings_before_distribution", null: false
     t.float    "distribution_charge",         null: false
     t.float    "total_savings",               null: false

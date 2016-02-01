@@ -34,3 +34,20 @@
   </div>
 
 <% end %>
+
+<% if @queries.nil? %>
+  <p> Sorry, no queries to display! </p>
+<% else %>
+  <% @queries.each do |query| %>
+    <ol>
+      <li>kWh Generated: <%= query.kwh_generated %></li>
+      <li>Consumed: <%= query.consumed %></li>
+      <li>Savings Consumed: <%= query.savings_consumed %></li>
+      <li>Sent to Grid: <%= query.sent_to_grid %></li>
+      <li>Credit Grid: <%= query.credit_grid %></li>
+      <li>Savings Before Distribution: <%= query.savings_before_distribution %></li>
+      <li>Distribution Charge: <%= query.distribution_charge %></li>
+      <li>Total Savings: <%= query.total_savings %></li>
+    </ol>
+  <% end %>
+<% end %>
