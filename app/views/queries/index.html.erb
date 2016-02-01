@@ -1,0 +1,36 @@
+<h1>Solaredge Calculator</h1>
+
+<p>Please enter information below:</p>
+
+<%= form_for(@query) do |f| %>
+
+  <div class="field">
+    <%= f.label :kWh_rate, "kWh Rate" %>
+    <%= f.text_field :kwh_rate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kWh_credit, "kWh Credit" %>
+    <%= f.text_field :kwh_credit %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kwh_generated, "kWh Generated" %>
+    <%= f.text_field :kwh_generated %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sent_to_grid, "Sent To Grid" %>
+    <%= f.text_field :sent_to_grid %>
+  </div>
+
+  <div class="field">
+    <%= f.label :distribution_charge, "Distribution Charge" %>
+    <%= f.text_field :distribution_charge %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+
+<% end %>
