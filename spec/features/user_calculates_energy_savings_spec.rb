@@ -23,4 +23,15 @@ feature "user enters in relevant information and total savings is output" do
     expect(page).to have_content "Savings Before Distribution: 24.152202"
     expect(page).to have_content "Total Savings: 0.83"
   end
+
+  scenario "user does not enter the required information" do
+    visit "/"
+    fill_in "query_kwh_credit", with: "String"
+    fill_in "query_kwh_generated", with: "246.87"
+    fill_in "query_sent_to_grid", with: "72"
+    fill_in "query_distribution_charge", with: "23.32"
+    click_on "Submit"
+
+    expect(page).to have_content "Please enter valid information."
+  end
 end
