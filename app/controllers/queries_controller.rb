@@ -6,8 +6,14 @@ class QueriesController < ApplicationController
 
   def create
     @query = Query.new(query_params)
-    binding.pry
-    redirect_to root_path
+    if @query.valid?
+      QueryCalculator.calculate(@query)
+      @query.save
+      redirect_to root_path
+    else
+      flash[:notice] = "Please enter valid information."
+      render :index
+    end
   end
 
   private
