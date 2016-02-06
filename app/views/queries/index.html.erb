@@ -35,19 +35,31 @@
 
 <% end %>
 
-<% if @queries.nil? %>
-  <p> Sorry, no queries to display! </p>
-<% else %>
-  <% @queries.each do |query| %>
-    <ol>
-      <li>kWh Generated: <%= query.kwh_generated %></li>
-      <li>Consumed: <%= query.consumed %></li>
-      <li>Savings Consumed: <%= query.savings_consumed %></li>
-      <li>Sent to Grid: <%= query.sent_to_grid %></li>
-      <li>Credit Grid: <%= query.credit_grid %></li>
-      <li>Savings Before Distribution: <%= query.savings_before_distribution %></li>
-      <li>Distribution Charge: <%= query.distribution_charge %></li>
-      <li>Total Savings: <%= query.total_savings %></li>
-    </ol>
-  <% end %>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>kWh Generated</th>
+      <th>kWh Consumed</th>
+      <th>Savings Consumed</th>
+      <th>Sent to Grid</th>
+      <th>Credit Grid</th>
+      <th>Savings Before Distribution</th>
+      <th>Distribution Charge</th>
+      <th>Total Savings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @queries.each do |query| %>
+      <tr>
+        <td><%= query.kwh_generated %></td>
+        <td><%= query.consumed %></td>
+        <td><%= query.savings_consumed %></td>
+        <td><%= query.sent_to_grid %></td>
+        <td><%= query.credit_grid %></td>
+        <td><%= query.savings_before_distribution %></td>
+        <td><%= query.distribution_charge %></td>
+        <td><%= query.total_savings %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

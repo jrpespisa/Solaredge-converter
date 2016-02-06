@@ -5,6 +5,7 @@ class QueriesController < ApplicationController
   end
 
   def create
+    @queries = Query.all
     @query = Query.new(query_params)
     if @query.valid?
       QueryCalculator.calculate(@query)
