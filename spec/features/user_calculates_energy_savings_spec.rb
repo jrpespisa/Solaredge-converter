@@ -17,11 +17,11 @@ feature "user enters in relevant information and total savings is output" do
     fill_in "query_distribution_charge", with: "23.32"
     click_on "Submit"
 
-    expect(page).to have_content "Consumed: 174.87"
-    expect(page).to have_content "Savings Consumed: 18.29"
-    expect(page).to have_content "Credit Grid: 5.86"
-    expect(page).to have_content "Savings Before Distribution: 24.152202"
-    expect(page).to have_content "Total Savings: 0.83"
+    expect(page).to have_content "174.87"
+    expect(page).to have_content "18.29"
+    expect(page).to have_content "5.86"
+    expect(page).to have_content "24.15"
+    expect(page).to have_content "0.83"
   end
 
   scenario "user does not enter the required information" do

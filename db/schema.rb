@@ -11,22 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201172848) do
+ActiveRecord::Schema.define(version: 20160206155405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "queries", force: :cascade do |t|
-    t.float    "kwh_rate",                    null: false
-    t.float    "kwh_credit",                  null: false
-    t.float    "kwh_generated",               null: false
-    t.float    "consumed",                    null: false
-    t.float    "sent_to_grid",                null: false
-    t.float    "savings_consumed",            null: false
-    t.float    "credit_grid",                 null: false
-    t.float    "savings_before_distribution", null: false
-    t.float    "distribution_charge",         null: false
-    t.float    "total_savings",               null: false
+    t.decimal  "kwh_rate",                    null: false
+    t.decimal  "kwh_credit",                  null: false
+    t.decimal  "kwh_generated",               null: false
+    t.decimal  "consumed",                    null: false
+    t.decimal  "sent_to_grid",                null: false
+    t.decimal  "savings_consumed",            null: false
+    t.decimal  "credit_grid",                 null: false
+    t.decimal  "savings_before_distribution", null: false
+    t.decimal  "distribution_charge",         null: false
+    t.decimal  "total_savings",               null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
