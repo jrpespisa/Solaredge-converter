@@ -1,3 +1,5 @@
+require "rails_helper"
+
 describe Query do
 
   it { should have_valid(:kwh_rate).when(0.76) }
