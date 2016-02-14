@@ -2,6 +2,8 @@ require "rails_helper"
 
 describe Query do
 
+  it { should belong_to :user}
+
   it { should have_valid(:kwh_rate).when(0.76) }
   it { should_not have_valid(:kwh_rate).when(nil, "", "String") }
 

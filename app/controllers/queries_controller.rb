@@ -7,6 +7,8 @@ class QueriesController < ApplicationController
   def create
     @queries = Query.all
     @query = Query.new(query_params)
+    @query.user = current_user
+    SolarData.new
     if @query.valid?
       QueryCalculator.calculate(@query)
       @query.save
@@ -25,7 +27,8 @@ class QueriesController < ApplicationController
     :kwh_credit,
     :kwh_generated,
     :sent_to_grid,
-    :distribution_charge
+    :distribution_charge,
+    :user_id
     )
   end
 end

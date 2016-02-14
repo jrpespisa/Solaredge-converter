@@ -1,65 +1,67 @@
-<h1>Solaredge Calculator</h1>
+<% if user_signed_in? %>
+  <h1>Solaredge Calculator</h1>
 
-<p>Please enter information below:</p>
+  <p>Please enter information below:</p>
 
-<%= form_for(@query) do |f| %>
+  <%= form_for(@query) do |f| %>
 
-  <div class="field">
-    <%= f.label :kWh_rate, "kWh Rate" %>
-    <%= f.text_field :kwh_rate %>
-  </div>
+    <div class="field">
+      <%= f.label :kWh_rate, "kWh Rate" %>
+      <%= f.text_field :kwh_rate %>
+    </div>
 
-  <div class="field">
-    <%= f.label :kWh_credit, "kWh Credit" %>
-    <%= f.text_field :kwh_credit %>
-  </div>
+    <div class="field">
+      <%= f.label :kWh_credit, "kWh Credit" %>
+      <%= f.text_field :kwh_credit %>
+    </div>
 
-  <div class="field">
-    <%= f.label :kwh_generated, "kWh Generated" %>
-    <%= f.text_field :kwh_generated %>
-  </div>
+    <div class="field">
+      <%= f.label :kwh_generated, "kWh Generated" %>
+      <%= f.text_field :kwh_generated %>
+    </div>
 
-  <div class="field">
-    <%= f.label :sent_to_grid, "Sent To Grid" %>
-    <%= f.text_field :sent_to_grid %>
-  </div>
+    <div class="field">
+      <%= f.label :sent_to_grid, "Sent To Grid" %>
+      <%= f.text_field :sent_to_grid %>
+    </div>
 
-  <div class="field">
-    <%= f.label :distribution_charge, "Distribution Charge" %>
-    <%= f.text_field :distribution_charge %>
-  </div>
+    <div class="field">
+      <%= f.label :distribution_charge, "Distribution Charge" %>
+      <%= f.text_field :distribution_charge %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Submit" %>
-  </div>
+    <div class="actions">
+      <%= f.submit "Submit" %>
+    </div>
 
-<% end %>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>kWh Generated</th>
-      <th>kWh Consumed</th>
-      <th>Savings Consumed</th>
-      <th>Sent to Grid</th>
-      <th>Credit Grid</th>
-      <th>Savings Before Distribution</th>
-      <th>Distribution Charge</th>
-      <th>Total Savings</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @queries.each do |query| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= query.kwh_generated %></td>
-        <td><%= query.consumed %></td>
-        <td><%= query.savings_consumed %></td>
-        <td><%= query.sent_to_grid %></td>
-        <td><%= query.credit_grid %></td>
-        <td><%= query.savings_before_distribution %></td>
-        <td><%= query.distribution_charge %></td>
-        <td><%= query.total_savings %></td>
+        <th>kWh Generated</th>
+        <th>kWh Consumed</th>
+        <th>Savings Consumed</th>
+        <th>Sent to Grid</th>
+        <th>Credit Grid</th>
+        <th>Savings Before Distribution</th>
+        <th>Distribution Charge</th>
+        <th>Total Savings</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @queries.each do |query| %>
+        <tr>
+          <td><%= query.kwh_generated %></td>
+          <td><%= query.consumed %></td>
+          <td><%= query.savings_consumed %></td>
+          <td><%= query.sent_to_grid %></td>
+          <td><%= query.credit_grid %></td>
+          <td><%= query.savings_before_distribution %></td>
+          <td><%= query.distribution_charge %></td>
+          <td><%= query.total_savings %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

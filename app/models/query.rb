@@ -1,4 +1,5 @@
 class Query < ActiveRecord::Base
+  belongs_to :user
 
   validates :kwh_rate, presence: true, numericality: true
   validates :kwh_credit, presence: true, numericality: true
