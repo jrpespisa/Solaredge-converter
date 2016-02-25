@@ -6,6 +6,16 @@
   <%= form_for(@query) do |f| %>
 
     <div class="field">
+      <%= f.label :start_date, "Start Date" %>
+      <%= f.text_field :start_date %>
+    </div>
+
+    <div class="field">
+      <%= f.label :end_date, "End Date" %>
+      <%= f.text_field :end_date %>
+    </div>
+
+    <div class="field">
       <%= f.label :kWh_rate, "kWh Rate" %>
       <%= f.text_field :kwh_rate %>
     </div>
@@ -13,11 +23,6 @@
     <div class="field">
       <%= f.label :kWh_credit, "kWh Credit" %>
       <%= f.text_field :kwh_credit %>
-    </div>
-
-    <div class="field">
-      <%= f.label :kwh_generated, "kWh Generated" %>
-      <%= f.text_field :kwh_generated %>
     </div>
 
     <div class="field">
