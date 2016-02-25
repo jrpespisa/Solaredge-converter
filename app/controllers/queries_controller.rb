@@ -7,6 +7,7 @@ class QueriesController < ApplicationController
   def create
     @queries = Query.all
     @query = Query.new(query_params)
+    @query.user = current_user
     if @query.valid?
       QueryCalculator.calculate(@query)
       @query.save
@@ -21,11 +22,13 @@ class QueriesController < ApplicationController
 
   def query_params
     params.require(:query).permit(
+    :start_date,
+    :end_date,
     :kwh_rate,
     :kwh_credit,
-    :kwh_generated,
     :sent_to_grid,
-    :distribution_charge
+    :distribution_charge,
+    :user_id
     )
   end
 end
