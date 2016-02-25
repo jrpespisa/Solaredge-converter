@@ -5,10 +5,10 @@ describe Query do
   it { should belong_to :user}
 
   it { should have_valid(:start_date).when("2016-02-07") }
-  it { should_not have_valid(:start_date).when(nil, "", "12-2-2016") }
+  it { should_not have_valid(:start_date).when(nil, "", "String") }
 
   it { should have_valid(:end_date).when("2016-02-14") }
-  it { should_not have_valid(:end_date).when(nil, "", "27-1-2016") }
+  it { should_not have_valid(:end_date).when(nil, "", "String") }
 
   it { should have_valid(:kwh_rate).when(0.76) }
   it { should_not have_valid(:kwh_rate).when(nil, "", "String") }
