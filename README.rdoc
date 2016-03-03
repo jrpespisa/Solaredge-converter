@@ -1,28 +1,10 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== Description
 
-Things you may want to cover:
+    This is a basic web application for use by customers with the SolarEdge software.
+  You can calculate your energy production and savings by entering in just a few
+  simple parameters. This application utilizes the SolarEdge API for solar energy
+  production data.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+  It is currently a work in progress.
