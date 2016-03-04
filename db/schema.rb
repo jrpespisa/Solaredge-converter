@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225202415) do
+ActiveRecord::Schema.define(version: 20160304211634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,20 @@ ActiveRecord::Schema.define(version: 20160225202415) do
     t.integer  "user_id",                     null: false
     t.date     "start_date",                  null: false
     t.date     "end_date",                    null: false
+  end
+
+  create_table "totals", force: :cascade do |t|
+    t.decimal  "kwh_generated",               null: false
+    t.decimal  "kwh_consumed",                null: false
+    t.decimal  "savings_consumed",            null: false
+    t.decimal  "sent_to_grid",                null: false
+    t.decimal  "credit_grid",                 null: false
+    t.decimal  "savings_before_distribution", null: false
+    t.decimal  "distribution_charge",         null: false
+    t.decimal  "total_savings",               null: false
+    t.integer  "user_id",                     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "users", force: :cascade do |t|

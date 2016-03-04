@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Total do
 
-  it { should belong_to :user}
+  it { should belong_to :user }
 
   it { should have_valid(:kwh_generated).when(435.01) }
   it { should_not have_valid(:kwh_generated).when(nil, "", "String") }
