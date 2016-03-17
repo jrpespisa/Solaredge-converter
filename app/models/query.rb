@@ -14,13 +14,13 @@ class Query < ActiveRecord::Base
   private
 
   def start_date_is_date?
-    if !start_date.is_a?(Date)
+    unless start_date.is_a?(Date)
       errors.add(:start_date, 'must be a valid start date')
     end
   end
 
   def end_date_is_date?
-    if !end_date.is_a?(Date)
+    unless end_date.is_a?(Date)
       errors.add(:end_date, 'must be a valid end date')
     end
   end

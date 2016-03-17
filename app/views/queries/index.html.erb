@@ -70,3 +70,34 @@
     </tbody>
   </table>
 <% end %>
+
+<h2>Totals:</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>kWh Generated</th>
+      <th>kWh Consumed</th>
+      <th>Savings Consumed</th>
+      <th>Sent to Grid</th>
+      <th>Credit Grid</th>
+      <th>Savings Before Distribution</th>
+      <th>Distribution Charge</th>
+      <th>Grand Total Savings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @totals.each do |total| %>
+      <tr>
+        <td><%= total.kwh_generated %></td>
+        <td><%= total.kwh_consumed %></td>
+        <td><%= total.savings_consumed %></td>
+        <td><%= total.sent_to_grid %></td>
+        <td><%= total.credit_grid %></td>
+        <td><%= total.savings_before_distribution %></td>
+        <td><%= total.distribution_charge %></td>
+        <td><%= total.total_savings %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
