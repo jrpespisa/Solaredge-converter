@@ -1,5 +1,6 @@
 class QueriesController < ApplicationController
   def index
+    @totals = Total.all
     @queries = Query.all
     @query = Query.new
   end
@@ -11,6 +12,7 @@ class QueriesController < ApplicationController
     if @query.valid?
       QueryCalculator.calculate(@query)
       @query.save
+      TotalCalculator.calculate(@queries, current_user)
       redirect_to root_path
     else
       flash[:notice] = "Please enter valid information."
