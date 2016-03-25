@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317200122) do
+ActiveRecord::Schema.define(version: 20160325181635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "credits", force: :cascade do |t|
+    t.decimal "tax_credit"
+    t.decimal "srec_credit"
+    t.integer "user_id",     null: false
+  end
 
   create_table "queries", force: :cascade do |t|
     t.decimal  "kwh_rate",                    null: false
