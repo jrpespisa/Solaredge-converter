@@ -13,7 +13,7 @@ class QueriesController < ApplicationController
     @query = Query.new(query_params)
     @query.user = current_user
     if @query.valid?
-      QueryCalculator.calculate(@query)
+      QueryCalculator.calculate(@query, current_user)
       @query.save
       TotalCalculator.calculate(@queries, @credits, current_user)
       redirect_to root_path

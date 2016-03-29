@@ -1,7 +1,7 @@
 class QueryCalculator
-  def self.calculate(query)
+  def self.calculate(query, current_user)
     @query = query
-    solar_data = SolarData.new(@query.start_date, @query.end_date)
+    solar_data = SolarData.new(@query.start_date, @query.end_date, current_user)
     @query.kwh_generated =  solar_data.solar_total / 1000
     @query.consumed = @query.kwh_generated - @query.sent_to_grid
     @query.savings_consumed = @query.consumed * @query.kwh_rate
