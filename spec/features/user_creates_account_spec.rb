@@ -8,6 +8,7 @@ feature "user creates a new account" do
     fill_in "Last name", with: "Smith"
     fill_in "Email", with: "jsmith@gmail.com"
     fill_in "Site ID", with: "439873"
+    fill_in "Initial Investment", with: 50000
     fill_in "user_password", with: "password"
     fill_in "Confirm Password", with: "password"
     click_button "Sign Up"

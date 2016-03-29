@@ -14,6 +14,9 @@ RSpec.describe User, type: :model do
    it { should have_valid(:site_id).when(473242, 434783) }
    it { should_not have_valid(:site_id).when(nil, "", "Test") }
 
+   it { should have_valid(:initial_investment).when(473242, 434783) }
+   it { should_not have_valid(:initial_investment).when(nil, "", "Test") }
+
    it { should have_valid(:email).when('jsmith@email.com', 'rstone@email.com') }
    it { should_not have_valid(:email).when(nil, "", "user@com", "userba.com") }
 
