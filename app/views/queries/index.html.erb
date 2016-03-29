@@ -3,6 +3,25 @@
 
   <p>Please enter information below:</p>
 
+  <%= form_for(@credit) do |f| %>
+
+    <div class="field">
+      <%= f.label :tax_credit, "Tax Credit" %>
+      <%= f.text_field :tax_credit %>
+    </div>
+
+    <div class="field">
+      <%= f.label :srec_credit, "SREC Credit" %>
+      <%= f.text_field :srec_credit %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Submit" %>
+    </div>
+
+  <% end %>
+
+
   <%= form_for(@query) do |f| %>
 
     <div class="field">
@@ -70,8 +89,25 @@
     </tbody>
   </table>
 
-<h2>Totals:</h2>
-
+  <h2>Credits:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Tax Credits</th>
+        <th>SREC Credits</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @credits.each do |credit| %>
+      <tr>
+        <td><%= credit.tax_credit %></td>
+        <td><%= credit.srec_credit %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <h2>Totals:</h2>
   <table>
     <thead>
       <tr>
@@ -100,4 +136,5 @@
       <% end %>
     </tbody>
   </table>
+
 <% end %>

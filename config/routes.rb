@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root "queries#index"
 
   resources :queries, only: [:index, :new, :create]
+  resources :credits, only: [:create]
 end
