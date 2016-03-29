@@ -6,9 +6,6 @@ class SolarData
     @response = Net::HTTP.get_response(@uri)
     @info = JSON.parse(@response.body)
     energy_dates = @info["energy"]["values"]
-    @solar_total = 0
-    energy_dates.each do |day|
-      @solar_total += day["value"]
-    end
+    @solar_total = energy_dates.map { |date| date["value"] }.reduce(:+)
   end
 end

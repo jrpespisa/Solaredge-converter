@@ -4,6 +4,7 @@ FactoryGirl.define do
     first_name "John"
     last_name "Smith"
     site_id "000000"
+    initial_investment 50000
     password "password"
     password_confirmation "password"
   end

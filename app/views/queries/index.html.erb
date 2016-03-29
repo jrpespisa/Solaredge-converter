@@ -3,6 +3,25 @@
 
   <p>Please enter information below:</p>
 
+  <%= form_for(@credit) do |f| %>
+
+    <div class="field">
+      <%= f.label :tax_credit, "Tax Credit" %>
+      <%= f.text_field :tax_credit %>
+    </div>
+
+    <div class="field">
+      <%= f.label :srec_credit, "SREC Credit" %>
+      <%= f.text_field :srec_credit %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Submit" %>
+    </div>
+
+  <% end %>
+
+
   <%= form_for(@query) do |f| %>
 
     <div class="field">
@@ -44,6 +63,8 @@
   <table>
     <thead>
       <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
         <th>kWh Generated</th>
         <th>kWh Consumed</th>
         <th>Savings Consumed</th>
@@ -57,6 +78,8 @@
     <tbody>
       <% @queries.each do |query| %>
         <tr>
+          <td><%= query.start_date %></td>
+          <td><%= query.end_date %></td>
           <td><%= query.kwh_generated %></td>
           <td><%= query.consumed %></td>
           <td><%= query.savings_consumed %></td>
@@ -69,35 +92,72 @@
       <% end %>
     </tbody>
   </table>
-<% end %>
 
-<h2>Totals:</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>kWh Generated</th>
-      <th>kWh Consumed</th>
-      <th>Savings Consumed</th>
-      <th>Sent to Grid</th>
-      <th>Credit Grid</th>
-      <th>Savings Before Distribution</th>
-      <th>Distribution Charge</th>
-      <th>Grand Total Savings</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @totals.each do |total| %>
+  <h2>Credits:</h2>
+  <table>
+    <thead>
       <tr>
-        <td><%= total.kwh_generated %></td>
-        <td><%= total.kwh_consumed %></td>
-        <td><%= total.savings_consumed %></td>
-        <td><%= total.sent_to_grid %></td>
-        <td><%= total.credit_grid %></td>
-        <td><%= total.savings_before_distribution %></td>
-        <td><%= total.distribution_charge %></td>
-        <td><%= total.total_savings %></td>
+        <th>Tax Credits</th>
+        <th>SREC Credits</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @credits.each do |credit| %>
+      <tr>
+        <td><%= credit.tax_credit %></td>
+        <td><%= credit.srec_credit %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2>Totals:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>kWh Generated</th>
+        <th>kWh Consumed</th>
+        <th>Savings Consumed</th>
+        <th>Sent to Grid</th>
+        <th>Credit Grid</th>
+        <th>Savings Before Distribution</th>
+        <th>Distribution Charge</th>
+        <th>Grand Total Savings</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @totals.each do |total| %>
+        <tr>
+          <td><%= total.kwh_generated %></td>
+          <td><%= total.kwh_consumed %></td>
+          <td><%= total.savings_consumed %></td>
+          <td><%= total.sent_to_grid %></td>
+          <td><%= total.credit_grid %></td>
+          <td><%= total.savings_before_distribution %></td>
+          <td><%= total.distribution_charge %></td>
+          <td><%= total.total_savings %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2>Return On Investment:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Initial Investment</th>
+        <th>Return on Investment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @totals.each do |total| %>
+      <tr>
+        <td><%= current_user.initial_investment %></td>
+        <td><%= current_user.return_on_investment = current_user.initial_investment - total.total_savings %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+<% end %>
