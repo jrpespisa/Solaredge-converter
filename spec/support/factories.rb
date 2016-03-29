@@ -5,7 +5,6 @@ FactoryGirl.define do
     last_name "Smith"
     site_id "000000"
     initial_investment 50000
-    return_on_investment 0
     password "password"
     password_confirmation "password"
   end

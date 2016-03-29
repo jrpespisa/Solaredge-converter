@@ -63,6 +63,8 @@
   <table>
     <thead>
       <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
         <th>kWh Generated</th>
         <th>kWh Consumed</th>
         <th>Savings Consumed</th>
@@ -76,6 +78,8 @@
     <tbody>
       <% @queries.each do |query| %>
         <tr>
+          <td><%= query.start_date %></td>
+          <td><%= query.end_date %></td>
           <td><%= query.kwh_generated %></td>
           <td><%= query.consumed %></td>
           <td><%= query.savings_consumed %></td>
@@ -106,7 +110,7 @@
       <% end %>
     </tbody>
   </table>
-  
+
   <h2>Totals:</h2>
   <table>
     <thead>
@@ -136,5 +140,24 @@
       <% end %>
     </tbody>
   </table>
+
+  <h2>Return On Investment:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Initial Investment</th>
+        <th>Return on Investment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @totals.each do |total| %>
+      <tr>
+        <td><%= current_user.initial_investment %></td>
+        <td><%= current_user.return_on_investment = current_user.initial_investment - total.total_savings %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 
 <% end %>
