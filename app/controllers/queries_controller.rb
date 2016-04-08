@@ -23,6 +23,16 @@ class QueriesController < ApplicationController
     end
   end
 
+  def destroy
+    @queries = Query.all
+    @credits = Credit.all
+    @query = Query.find(params[:id])
+    @query.user = current_user
+    @query.destroy
+    TotalCalculator.calculate(@queries, @credits, current_user)
+    redirect_to root_path
+  end
+
   private
 
   def query_params

@@ -13,6 +13,16 @@ class CreditsController < ApplicationController
     end
   end
 
+  def destroy
+    @credits = Credit.all
+    @queries = Query.all
+    @credit = Credit.find(params[:id])
+    @credit.user = current_user
+    @credit.destroy
+    TotalCalculator.calculate(@queries, @credits, current_user)
+    redirect_to root_path
+  end
+
   private
 
   def credit_params

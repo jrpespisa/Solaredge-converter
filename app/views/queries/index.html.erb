@@ -88,6 +88,7 @@
           <td><%= query.savings_before_distribution %></td>
           <td><%= query.distribution_charge %></td>
           <td><%= query.total_savings %></td>
+          <td><%= link_to "Delete", query_path(query), method: :delete %><td>
         </tr>
       <% end %>
     </tbody>
@@ -106,6 +107,7 @@
       <tr>
         <td><%= credit.tax_credit %></td>
         <td><%= credit.srec_credit %></td>
+        <td><%= link_to "Delete", credit_path(credit), method: :delete %><td>
       </tr>
       <% end %>
     </tbody>
