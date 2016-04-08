@@ -1,4 +1,5 @@
 class QueriesController < ApplicationController
+  
   def index
     @totals = Total.all
     @credits = Credit.all
