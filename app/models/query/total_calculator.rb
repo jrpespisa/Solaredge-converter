@@ -2,10 +2,8 @@ class TotalCalculator
   def self.calculate(queries, credits, current_user)
     @queries = queries
     @credits = credits
-    if Total.where(user_id: current_user.id).any?
-      @user_totals = Total.where(user_id: current_user.id)
-      Total.destroy_all(['created_at < ?', @user_totals.last.created_at])
-      @user_totals.first.destroy
+    if Total.any?
+      Total.destroy_all
     end
     @total = Total.new
     @total.user = current_user
