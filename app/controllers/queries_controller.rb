@@ -1,5 +1,6 @@
 class QueriesController < ApplicationController
-  
+  before_action :authenticate_user!
+
   def index
     @totals = Total.all
     @credits = Credit.all

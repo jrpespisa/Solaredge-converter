@@ -1,12 +1,14 @@
 class Api::V1::QueriesController < ActionController::Base
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
+
   def index
-    @queries = Query.all
+    @queries = Query.where('user_id = ?', current_user.id)
     render json: @queries
   end
 
   def create
     @query = Query.new(query_params)
+    @query.user = current_user
     if @query.save
       render json: @query
     else
