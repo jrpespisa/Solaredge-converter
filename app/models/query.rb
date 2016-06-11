@@ -11,7 +11,7 @@ class Query < ActiveRecord::Base
   validates :sent_to_grid, presence: true, numericality: true
   validates :distribution_charge, presence: true, numericality: true
 
-  after_save :get_data, :calculate
+  before_save :get_data, :calculate
 
   def get_data
     @key = ENV["API_KEY"]

@@ -14,10 +14,7 @@ class QueriesController < ApplicationController
     @credits = Credit.all
     @query = Query.new(query_params)
     @query.user = current_user
-    if @query.valid?
-      QueryCalculator.calculate(@query, current_user)
-      @query.save
-      TotalCalculator.calculate(@queries, @credits, current_user)
+    if @query.save
       redirect_to root_path
     else
       flash[:notice] = "Please enter valid information."
