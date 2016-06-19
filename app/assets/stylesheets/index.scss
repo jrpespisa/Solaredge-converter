@@ -1,3 +1,45 @@
+nav ul li {
+  list-style-type: none;
+  padding: 2px 5px 0px;
+  display: inline-block;
+}
+
+nav {
+  width: 90%;
+  margin: auto;
+}
+
+.credit-form,
+.query-input {
+  padding: 0 10px 10px;
+  border: 1px solid black;
+}
+
+.query-input {
+  margin: 0% 0% 0% 5%;
+  width: 50%;
+  display: inline-block;
+}
+
+.credit-input {
+  float: right;
+  width: 35%;
+  display: inline-block;
+  margin-right: 5%;
+}
+
+.total-savings {
+  margin-top: 10%;
+  padding: 0px 10px 10px;
+  border: 1px solid black;
+}
+
+.query-table,
+.credit-table {
+  width: 90%;
+  margin: auto;
+}
+
 table {
   td,
   th {

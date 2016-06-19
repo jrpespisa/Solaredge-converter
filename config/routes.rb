@@ -4,4 +4,11 @@ Rails.application.routes.draw do
 
   resources :queries, only: [:index, :new, :create, :destroy]
   resources :credits, only: [:create, :destroy]
+
+  namespace :api do
+    namespace :v1 do
+      resources :queries, only: [:index, :create, :destroy]
+      resources :credits, only: [:index, :create, :destroy]
+    end
+  end
 end
