@@ -199,112 +199,122 @@ var Queries = React.createClass({
     })
     return (
       <div>
-        <h1>Credit Input</h1>
-        <form>
-          <FormGroup>
-            <label for ="credittype">Credit Type</label>
-            <Input type="select" defaultValue="select" onChange={this.handleCreditTypeChange}>
-              <option>Please Select</option>
-              <option>Tax Credit</option>
-              <option>Srec Credit</option>
-            </Input>
-          </FormGroup>
-          <FormGroup>
-            <label for ="creditval">Credit Value</label>
-            <Input
-              type='text'
-              value={this.state.amount}
-              onChange={this.handleCreditInputChange}
-              />
-          </FormGroup>
-          <Button className="btn-primary" type="submit" onClick={this.handleCreditSubmit}>
-            Save
-          </Button>
-        </form>
-        <h1>Query Input</h1>
-        <form>
-          <FormGroup>
-            <label for="sdate">Start Date</label>
-            <Input
-              type='text'
-              placeholder="yyyy-mm-dd"
-              value={this.state.start_date}
-              onChange={this.handleStartDateChange}
-              />
-          </FormGroup>
-          <FormGroup>
-            <label for="edate">End Date</label>
-            <Input
-              type='text'
-              placeholder="yyyy-mm-dd"
-              value={this.state.end_date}
-              onChange={this.handleEndDateChange}
-              />
-          </FormGroup>
-          <FormGroup>
-            <label for ="kwhrate">kWh Rate</label>
-            <Input
-              type='text'
-              value={this.state.kwh_rate}
-              onChange={this.handleKwhRateChange}
-              />
-          </FormGroup>
-          <FormGroup>
-            <label for ="kwhcred">kWh Credit</label>
-            <Input
-              type='text'
-              value={this.state.kwh_credit}
-              onChange={this.handleKwhCreditChange}
-              />
-          </FormGroup>
-          <FormGroup>
-            <label for ="senttogrid">Sent to Grid</label>
-            <Input
-              type='text'
-              value={this.state.sent_to_grid}
-              onChange={this.handleSentToGridChange}
-              />
-          </FormGroup>
-          <FormGroup>
-            <label for ="distcharge">Distribution Charge</label>
-            <Input
-              type='text'
-              value={this.state.distribution_charge}
-              onChange={this.handleDistributionChargeChange}
-              />
-          </FormGroup>
-          <Button className="btn-primary" type="submit" onClick={this.handleQuerySubmit}>
-            Save
-          </Button>
-        </form>
-        <h2>Total Monthly Savings</h2>
-        <h3>{this.state.savings}</h3>
-        <h2>Credits</h2>
-        <table className="table table-striped">
-          <th>Tax Credit</th>
-          <th>Srec Credit</th>
-          <th>Delete</th>
-          <tbody>
-            {creditProps}
-          </tbody>
-        </table>
-        <h2>Monthly Records</h2>
-        <table className="table table-striped">
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>kWh Generated</th>
-          <th>kWh Consumed</th>
-          <th>Savings Consumed</th>
-          <th>Sent to Grid</th>
-          <th>Credit Grid</th>
-          <th>Savings Before Distribution</th>
-          <th>Distribution Charge</th>
-          <th>Total Savings</th>
-          <th>Delete</th>
-          <tbody>
-            {queryProps}
-          </tbody>
-        </table>
+        <div className="credit-input">
+          <form className="credit-form">
+            <h2>Credit Input</h2>
+            <FormGroup>
+              <label for ="credittype">Credit Type</label>
+              <Input type="select" defaultValue="select" onChange={this.handleCreditTypeChange}>
+                <option>Please Select</option>
+                <option>Tax Credit</option>
+                <option>Srec Credit</option>
+              </Input>
+            </FormGroup>
+            <FormGroup>
+              <label for ="creditval">Credit Value</label>
+              <Input
+                type='text'
+                value={this.state.amount}
+                onChange={this.handleCreditInputChange}
+                />
+            </FormGroup>
+            <Button className="btn-primary" type="submit" onClick={this.handleCreditSubmit}>
+              Save
+            </Button>
+          </form>
+          <div className="total-savings">
+            <h2>Total Savings</h2>
+            <h3>{this.state.savings}</h3>
+          </div>
+        </div>
+        <div className="query-input">
+          <h2>Monthy Record Input</h2>
+          <form>
+            <FormGroup>
+              <label for="sdate">Start Date</label>
+              <Input
+                type='text'
+                placeholder="yyyy-mm-dd"
+                value={this.state.start_date}
+                onChange={this.handleStartDateChange}
+                />
+            </FormGroup>
+            <FormGroup>
+              <label for="edate">End Date</label>
+              <Input
+                type='text'
+                placeholder="yyyy-mm-dd"
+                value={this.state.end_date}
+                onChange={this.handleEndDateChange}
+                />
+            </FormGroup>
+            <FormGroup>
+              <label for ="kwhrate">kWh Rate</label>
+              <Input
+                type='text'
+                value={this.state.kwh_rate}
+                onChange={this.handleKwhRateChange}
+                />
+            </FormGroup>
+            <FormGroup>
+              <label for ="kwhcred">kWh Credit</label>
+              <Input
+                type='text'
+                value={this.state.kwh_credit}
+                onChange={this.handleKwhCreditChange}
+                />
+            </FormGroup>
+            <FormGroup>
+              <label for ="senttogrid">Sent to Grid</label>
+              <Input
+                type='text'
+                value={this.state.sent_to_grid}
+                onChange={this.handleSentToGridChange}
+                />
+            </FormGroup>
+            <FormGroup>
+              <label for ="distcharge">Distribution Charge</label>
+              <Input
+                type='text'
+                value={this.state.distribution_charge}
+                onChange={this.handleDistributionChargeChange}
+                />
+            </FormGroup>
+            <Button className="btn-primary" type="submit" onClick={this.handleQuerySubmit}>
+              Save
+            </Button>
+          </form>
+        </div>
+        <div className="credit-table">
+          <h2>Credits</h2>
+          <table className="table table-striped">
+            <th>Tax Credit</th>
+            <th>Srec Credit</th>
+            <th>Delete</th>
+            <tbody>
+              {creditProps}
+            </tbody>
+          </table>
+        </div>
+        <div className="query-table">
+          <h2>Monthly Records</h2>
+          <table className="table table-striped">
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>kWh Generated</th>
+            <th>kWh Consumed</th>
+            <th>Savings Consumed</th>
+            <th>Sent to Grid</th>
+            <th>Credit Grid</th>
+            <th>Savings Before Distribution</th>
+            <th>Distribution Charge</th>
+            <th>Total Savings</th>
+            <th>Delete</th>
+            <tbody>
+              {queryProps}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }
@@ -327,8 +337,8 @@ var Credit = React.createClass({
   render: function() {
     return (
       <tr>
-        <td>{this.props.taxCredit}</td>
-        <td>{this.props.srecCredit}</td>
+        <td className="savings-total" value={this.props.taxCredit}>{this.props.taxCredit}</td>
+        <td className="savings-total" value={this.props.srecCredit}>{this.props.srecCredit}</td>
         <td><Button className="btn-primary" type="submit" onClick={this.handleDelete}>
           Delete
         </Button></td>
