@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": "0.12.7"
+    "node": "0.12.7",
+    "npm": "2.12.1"
   },
   "main": "webpack.config.js",
   "scripts": {
