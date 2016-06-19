@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :queries, only: [:index, :create, :destroy]
+      resources :credits, only: [:index, :create, :destroy]
     end
   end
 end
