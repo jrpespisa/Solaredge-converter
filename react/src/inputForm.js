@@ -233,8 +233,8 @@ var Queries = React.createClass({
             <FormGroup>
               <label for="sdate">Start Date</label>
               <Input
-                type='text'
-                placeholder="yyyy-mm-dd"
+                type='date'
+                placeholder="Select Date"
                 value={this.state.start_date}
                 onChange={this.handleStartDateChange}
                 />
@@ -242,8 +242,8 @@ var Queries = React.createClass({
             <FormGroup>
               <label for="edate">End Date</label>
               <Input
-                type='text'
-                placeholder="yyyy-mm-dd"
+                type='date'
+                placeholder="Select Date"
                 value={this.state.end_date}
                 onChange={this.handleEndDateChange}
                 />
