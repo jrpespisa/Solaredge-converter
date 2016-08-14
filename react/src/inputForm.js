@@ -15,9 +15,6 @@ var renderQueries = function() {
   )
 };
 
-// Credits
-
-
 // Defines the GET request for Queries and displays all Query records for user.
 var Queries = React.createClass({
   loadQueries: function() {
@@ -28,21 +25,6 @@ var Queries = React.createClass({
       cache: false,
       success: function(data) {
         this.setState({data: data})
-        this.reloadSavingsCounter();
-      }.bind(this),
-      error: function (xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    })
-  },
-  loadCredits: function() {
-    $.ajax({
-      url: "api/v1/credits",
-      dataType: 'json',
-      cache: false,
-      success: function(data) {
-        this.setState({credits: data})
-        this.reloadSavingsCounter();
       }.bind(this),
       error: function (xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -55,9 +37,9 @@ var Queries = React.createClass({
       data: {
         queries: [],
         user: [],
+        credits: [],
         totals: {}
       },
-      credits: [],
       credit_type: '',
       tax_credit: '',
       srec_credit: '',
@@ -66,28 +48,12 @@ var Queries = React.createClass({
       kwh_rate: '',
       kwh_credit: '',
       sent_to_grid: '',
-      distribution_charge: '',
-      totalKwhGenerated: '',
-      totalKwhConsumed: '',
-      totalSavingsConsumed: '',
-      totalSentToGrid: '',
-      totalCreditGrid: '',
-      totalSavingsBeforeDistribution: '',
-      totalDistributionCharge: '',
-      savings: this.reloadSavingsCounter()
+      distribution_charge: ''
     };
   },
   // Calls 'loadQueries' once on initial page load.
   componentDidMount: function() {
     this.loadQueries();
-    this.loadCredits();
-  },
-  reloadSavingsCounter: function() {
-    var savings = 0
-    $(".savings-total").each(function() {
-      savings += parseFloat($(this).val());
-    });
-    this.setState({savings: savings})
   },
   handleCreditTypeChange: function(event) {
     this.setState({credit_type: event.target.value})
@@ -129,7 +95,7 @@ var Queries = React.createClass({
       data: {
         credit: {
           tax_credit: this.state.tax_credit,
-          srec_credit: this.state.srec_credit,
+          srec_credit: this.state.srec_credit
         }
       },
       success: function(data) {
@@ -139,8 +105,8 @@ var Queries = React.createClass({
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
-    this.loadCredits();
-    this.setState({credits: []});
+    this.loadQueries();
+    this.setState({data: []});
   },
   handleQuerySubmit: function(event) {
     event.preventDefault();
@@ -173,18 +139,14 @@ var Queries = React.createClass({
   render: function() {
     // Queries data iterator. Sets props to be passed down to individual Query.
     var loadQueries = this.loadQueries
-    var loadCredits = this.loadCredits
-    var savings = this.state.savings
-    var initialInvestment = this.state.data.user.initial_investment
-    var remaining = initialInvestment - savings
-    var creditProps = this.state.credits.map(function(credit) {
+    var creditProps = this.state.data.credits.map(function(credit) {
       return (
         <Credit
           key = {credit.id}
           id = {credit.id}
           taxCredit = {credit.tax_credit}
           srecCredit = {credit.srec_credit}
-          reloadUi = {loadCredits}
+          reloadUi = {loadQueries}
         />
       )
     });
@@ -206,7 +168,6 @@ var Queries = React.createClass({
           distributionCharge = {query.distribution_charge}
           totalSavings = {query.total_savings}
           reloadUi = {loadQueries}
-          grandTotal = {savings}
         />
       )
     })
@@ -237,9 +198,9 @@ var Queries = React.createClass({
           </form>
           <div className="total-savings">
             <h2>Payoff Statistics</h2>
-            <h3>Initial Investment: ${initialInvestment}</h3>
-            <h3>Balance: ${remaining}</h3>
-            <h3>Total ROI: ${savings}</h3>
+            <h3>Initial Investment: ${this.state.data.totals.initial_investment}</h3>
+            <h3>Balance: ${this.state.data.totals.balance}</h3>
+            <h3>Total ROI: ${this.state.data.totals.savings}</h3>
           </div>
         </div>
         <div className="query-input">
@@ -384,11 +345,11 @@ var Credit = React.createClass({
   render: function() {
     return (
       <tr>
-        <td className="savings-total" value={this.props.taxCredit}>{this.props.taxCredit}</td>
-        <td className="savings-total" value={this.props.srecCredit}>{this.props.srecCredit}</td>
-        <td><Button className="btn-primary" type="submit" onClick={this.handleDelete}>
-          Delete
-        </Button></td>
+      <td className="savings-total" value={this.props.taxCredit}>{this.props.taxCredit}</td>
+      <td className="savings-total" value={this.props.srecCredit}>{this.props.srecCredit}</td>
+      <td><Button className="btn-primary" type="submit" onClick={this.handleDelete}>
+      Delete
+      </Button></td>
       </tr>
     )
   }
