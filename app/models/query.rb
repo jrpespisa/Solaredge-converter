@@ -32,6 +32,27 @@ class Query < ActiveRecord::Base
     self.total_savings = self.savings_before_distribution - self.distribution_charge
   end
 
+  def self.process_totals(queries)
+    totals = {
+      kwh_generated: 0,
+      kwh_consumed: 0,
+      savings_consumed: 0,
+      sent_to_grid: 0,
+      credit_grid: 0,
+      savings_before_distribution: 0,
+      distribution_charge: 0
+    }
+    queries.each do |query|
+      totals[:kwh_generated] += query.kwh_generated
+      totals[:kwh_consumed] += query.consumed
+      totals[:savings_consumed] += query.savings_consumed
+      totals[:sent_to_grid] += query.sent_to_grid
+      totals[:credit_grid] += query.credit_grid
+      totals[:savings_before_distribution] += query.savings_before_distribution
+      totals[:distribution_charge] += query.distribution_charge
+    end
+    return totals
+  end
 
   private
 
