@@ -52,7 +52,10 @@ var Queries = React.createClass({
   // Initialize empty data array as state.
   getInitialState: function() {
     return {
-      data: [],
+      data: {
+        queries: [],
+        user: []
+      },
       credits: [],
       credit_type: '',
       tax_credit: '',
@@ -164,6 +167,8 @@ var Queries = React.createClass({
     var loadQueries = this.loadQueries
     var loadCredits = this.loadCredits
     var savings = this.state.savings
+    var initialInvestment = this.state.data.user.initial_investment
+    var remaining = initialInvestment - savings
     var creditProps = this.state.credits.map(function(credit) {
       return (
         <Credit
@@ -175,7 +180,7 @@ var Queries = React.createClass({
         />
       )
     });
-    var queryProps = this.state.data.map(function(query) {
+    var queryProps = this.state.data.queries.map(function(query) {
       return (
         <Query
           key = {query.id}
@@ -223,8 +228,10 @@ var Queries = React.createClass({
             </Button>
           </form>
           <div className="total-savings">
-            <h2>Total Savings</h2>
-            <h3>{this.state.savings}</h3>
+            <h2>Payoff Statistics</h2>
+            <h3>Initial Investment: ${initialInvestment}</h3>
+            <h3>Balance: ${remaining}</h3>
+            <h3>Total Savings: ${savings}</h3>
           </div>
         </div>
         <div className="query-input">
