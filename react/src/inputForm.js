@@ -54,7 +54,8 @@ var Queries = React.createClass({
     return {
       data: {
         queries: [],
-        user: []
+        user: [],
+        totals: {}
       },
       credits: [],
       credit_type: '',
@@ -66,6 +67,13 @@ var Queries = React.createClass({
       kwh_credit: '',
       sent_to_grid: '',
       distribution_charge: '',
+      totalKwhGenerated: '',
+      totalKwhConsumed: '',
+      totalSavingsConsumed: '',
+      totalSentToGrid: '',
+      totalCreditGrid: '',
+      totalSavingsBeforeDistribution: '',
+      totalDistributionCharge: '',
       savings: this.reloadSavingsCounter()
     };
   },
@@ -231,7 +239,7 @@ var Queries = React.createClass({
             <h2>Payoff Statistics</h2>
             <h3>Initial Investment: ${initialInvestment}</h3>
             <h3>Balance: ${remaining}</h3>
-            <h3>Total Savings: ${savings}</h3>
+            <h3>Total ROI: ${savings}</h3>
           </div>
         </div>
         <div className="query-input">
@@ -303,6 +311,21 @@ var Queries = React.createClass({
             </tbody>
           </table>
         </div>
+        <div className="query-table total">
+          <h2>Total Monthly Record Metrics</h2>
+          <table className="table table-striped">
+            <th>Total kWh Generated</th>
+            <th>Total kWh Consumed</th>
+            <th>Total Savings Consumed</th>
+            <th>Total Sent to Grid</th>
+            <th>Total Credit Grid</th>
+            <th>Total Savings Before Distribution</th>
+            <th>Total Distribution Charge</th>
+            <tbody>
+            <TotalDetails totals={this.state.data.totals} />
+            </tbody>
+          </table>
+        </div>
         <div className="query-table">
           <h2>Monthly Records</h2>
           <table className="table table-striped">
@@ -323,6 +346,23 @@ var Queries = React.createClass({
           </table>
         </div>
       </div>
+    )
+  }
+});
+
+var TotalDetails = React.createClass({
+  render: function() {
+    var totals = this.props.totals;
+    return (
+      <tr>
+        <td>{totals["kwh_generated"]}</td>
+        <td>{totals["kwh_consumed"]}</td>
+        <td>{totals["savings_consumed"]}</td>
+        <td>{totals["sent_to_grid"]}</td>
+        <td>{totals["credit_grid"]}</td>
+        <td>{totals["savings_before_distribution"]}</td>
+        <td>{totals["distribution_charge"]}</td>
+      </tr>
     )
   }
 });

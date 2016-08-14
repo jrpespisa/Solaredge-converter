@@ -5,7 +5,8 @@ class Api::V1::QueriesController < ActionController::Base
     @queries = Query.where('user_id = ?', current_user.id)
     render json: {
       queries: @queries,
-      user: current_user
+      user: current_user,
+      totals: Query.process_totals(@queries)
     }
   end
 
