@@ -3,7 +3,10 @@ class Api::V1::QueriesController < ActionController::Base
 
   def index
     @queries = Query.where('user_id = ?', current_user.id)
-    render json: @queries
+    render json: {
+      queries: @queries,
+      user: current_user
+    }
   end
 
   def create
