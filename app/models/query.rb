@@ -19,12 +19,14 @@ class Query < ActiveRecord::Base
     @response = Net::HTTP.get_response(@uri)
     @info = JSON.parse(@response.body)
     energy_dates = @info["energy"]["values"]
-    @solar_total = energy_dates.map { |date| date["value"] }.reduce(:+)
+    @solar_total = energy_dates.map { |date| date["value"] || 0 }.reduce(:+)
   end
 
 
   def calculate
-    self.kwh_generated = @solar_total / 1000
+    if self.kwh_generated.nil?
+      self.kwh_generated = @solar_total / 1000
+    end
     self.consumed = self.kwh_generated - self.sent_to_grid
     self.savings_consumed = self.consumed * self.kwh_rate
     self.credit_grid = self.sent_to_grid * self.kwh_credit
