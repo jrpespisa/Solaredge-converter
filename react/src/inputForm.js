@@ -321,6 +321,7 @@ var Queries = React.createClass({
             <th>Total Credit Grid</th>
             <th>Total Savings Before Distribution</th>
             <th>Total Distribution Charge</th>
+            <th>Grand Total Savings</th>
             <tbody>
             <TotalDetails totals={this.state.data.totals} />
             </tbody>
@@ -362,6 +363,7 @@ var TotalDetails = React.createClass({
         <td>{totals["credit_grid"]}</td>
         <td>{totals["savings_before_distribution"]}</td>
         <td>{totals["distribution_charge"]}</td>
+        <td>{totals["total_savings"]}</td>
       </tr>
     )
   }

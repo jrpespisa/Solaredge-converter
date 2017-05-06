@@ -42,18 +42,32 @@ class Query < ActiveRecord::Base
       sent_to_grid: 0,
       credit_grid: 0,
       savings_before_distribution: 0,
-      distribution_charge: 0
+      distribution_charge: 0,
+      total_savings: 0
     }
     queries.each do |query|
-      totals[:kwh_generated] += query.kwh_generated
-      totals[:kwh_consumed] += query.consumed
-      totals[:savings_consumed] += query.savings_consumed
-      totals[:sent_to_grid] += query.sent_to_grid
-      totals[:credit_grid] += query.credit_grid
-      totals[:savings_before_distribution] += query.savings_before_distribution
-      totals[:distribution_charge] += query.distribution_charge
+      totals[:kwh_generated] += query.kwh_generated.to_f.round(2)
+      totals[:kwh_consumed] += query.consumed.to_f.round(2)
+      totals[:savings_consumed] += query.savings_consumed.to_f.round(2)
+      totals[:sent_to_grid] += query.sent_to_grid.to_f.round(2)
+      totals[:credit_grid] += query.credit_grid.to_f.round(2)
+      totals[:savings_before_distribution] += query.savings_before_distribution.to_f.round(2)
+      totals[:distribution_charge] += query.distribution_charge.to_f.round(2)
+      totals[:total_savings] += query.total_savings.to_f.round(2)
     end
     return totals
+  end
+
+  def self.round_queries(queries)
+    query_attributes = []
+    queries.each do |q|
+      cleansed_attributes = {}
+      q.attributes.each do |atr, val|
+        (val && val.class == BigDecimal) ? cleansed_attributes[atr] = val.to_f.round(2) : cleansed_attributes[atr] = val
+      end
+      query_attributes << cleansed_attributes
+    end
+    return query_attributes
   end
 
   private
